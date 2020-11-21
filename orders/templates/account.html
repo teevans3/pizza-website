@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+  Account
+{% endblock %}
+
+{% block body %}
+<div class="account-div">
+  <table>
+    <tr>
+      <td class="account-table-left">
+        <div>
+          <h2>USERNAME</h2>
+        </div>
+      </td>
+      <td class="account-table-right">
+        <div>
+          <span>{{ user }}</span>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="account-table-left">
+          <h2>NAME</h2>
+        </div>
+      </td>
+      <td>
+        <div class="account-table-right">
+          <span>{{ user.first_name }} {{ user.last_name}}</span>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="account-table-left">
+          <h2>EMAIL</h2>
+        </div>
+      </td>
+      <td>
+        <div class="account-table-right">
+          <span>{{ user.email }}</span>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="account-table-left">
+          <h2>ADDRESS</h2>
+        </div>
+      </td>
+      <td>
+        <div class="account-table-right">
+          <span id="user-address">1234 Apple St. Cambridge MA 99999</span>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div id="pass-change-link" class="account-table-left">
+          <h2><a href="change-password.html">Change Password</a></h2>
+        </div>
+      </td>
+      <td>
+      </td>
+    </tr>
+  </table>
+  <div id="logout-div">
+    <form action="{% url 'logout' %}" method="post">
+      {% csrf_token %}
+      <button id="logout-btn" type="submit">LOG OUT</button>
+    </form>
+  </div>
+</div>
+
+
+{% endblock %}

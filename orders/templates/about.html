@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+  About
+{% endblock %}
+
+{% block body %}
+<div class="section-header">
+</div>
+<div id="about-img-div">
+  <img src="/static/images/misc/restaurant.jpg" id="restaurant-img"/>
+</div>
+<div id="about-info-div">
+  <div class="about-inner">
+    <div class="about-inner-left">
+      <h2>CONTACT US</h2>
+      <div class="about-div"></div>
+      <div id="phone">
+        <span style="width: 40%; float: left;"><i>Phone</i></span>
+        <div style="float: right;">
+          <p>(617) 876-4897</p>
+          <p>(617) 876-0012</p>
+        </div>
+      </div>
+      <div id="fax">
+        <p style="float: left;"><i>Fax</i><p class="about-time">(617) 661-6188</p></p>
+      </div>
+      <div id="email">
+        <p style="float: left;"><i>Email</i><p class="about-time">pinocchiospizza1@gmail.com</p></p>
+      </div>
+    </div>
+    <div class="about-inner-right">
+      <h2>HOURS OF OPERATION</h2>
+      <div class="about-div"></div>
+      <p><i>Monday - Thursday</i><span class="about-time">11:00am - 1:00am</span></p>
+      <p><i>Friday & Saturday</i><span class="about-time">11:00am - 2:30am</span></p>
+      <p><i>Sunday</i><span class="about-time">1:00pm - 12:00am</span></p>
+      <p style="color: #9C3434; margin-top: 26px;">TEMPORARY HOURS DUE TO COVID-19:</p>
+      <p><i>Monday - Saturday</i> <span class="about-time">11:00am - 9:00pm</span></p>
+      <p><i>Sunday</i> <span class="about-time">1:00pm - 9:00pm</span></p>
+    </div>
+  </div>
+  <div class="about-inner" id="location-inner">
+    <h2>LOCATION & DIRECTIONS</h2>
+    <div class="about-div"></div>
+    <h4>74 Winthrop Street</h4>
+    <h4>Cambridge, MA 02138</h4>
+    <div id="map-img">
+      <a href="http://maps.google.com/maps?q=74%20Winthrop%20St%2C%20Cambridge%2C%20MA%2002138&spn=0.023621%2C0.024837&gl=us" target="_blank">
+        <img src="static/images/misc/map.jpg" />
+      </a>
+    </div>
+    <div id="directions-info">
+      <ul>
+        <li>Pinocchio's is located on Winthrop street right near the corner of JFK Street next to Berk's shoes.</li>
+        <li>We are 2 blocks from the Harvard Square T stop.</li>
+        <li>Do not park across the street from us! It is a tow zone!</li>
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

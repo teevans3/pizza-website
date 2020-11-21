@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+  Index
+{% endblock %}
+
+{% block body %}
+<div id="home-title-div">
+  <h1>PINOCCHIO'S</h1>
+  <h3><i>PIZZA & SUBS</i></h3>
+</div>
+<div class="slider">
+  <div>
+    <img class="slider-img" src="/static/images/sliders/slider1.jpg" />
+  </div>
+  <div>
+    <img class="slider-img" src="/static/images/sliders/slider2.jpg" />
+  </div>
+  <div>
+    <img class="slider-img" src="/static/images/sliders/slider3.jpg" />
+  </div>
+  <div>
+    <img class="slider-img" src="/static/images/sliders/slider4.jpg" />
+  </div>
+  <div>
+    <img class="slider-img" src="/static/images/sliders/slider5.jpg" />
+  </div>
+  <div>
+    <img class="slider-img" src="/static/images/sliders/slider6.jpg" />
+  </div>
+</div>
+<div class="home-main-div">
+  <div class="home-other-left">
+    <h2>CHECK OUT OUR MENTIONS!</h2>
+    <div class="home-div" style="margin-top: 20px;"></div>
+    <h4>...on <i>Suits</i>!</h4>
+    <iframe width="400" height="224" src="https://www.youtube.com/embed/hoM7PJu6V-E" frameborder="0" allowfullscreen=""></iframe>
+    <h4>...and <i>Phantom Gourmet</i>!</h4>
+    <iframe width="400" height="224" src="https://www.youtube.com/embed/TkABR72j7jU" frameborder="0" allowfullscreen=""></iframe>
+  </div>
+  <div class="home-info">
+    <div id="home-info-top">
+      <p style="margin-top: 40px;">Taste our <i>award-winning</i> Sicilian style pizza!</p>
+      <p>Pizza not your thing? Try our <i>mouth-watering</i> Steak subs!</p>
+      <p>Or savor one of our <i>exquisite</i> pastas or <i>delectable</i> salads!</p>
+      <p>Family style? Relish in one of our <i>scrumptious</i> dinner platters!</p>
+      <p>Regardless of your taste, <i>Noch's</i> has something special for everyone.</p>
+      <p>Don't believe us? We have over 700 reviews on <a target="_blank" href="https://www.yelp.com/biz/pinocchios-pizza-and-subs-cambridge">Yelp!</a></p>
+    </div>
+    <div class="home-div"></div>
+    <div id="home-info-btm">
+      <h2><i>Pinocchio's Pizza & Subs</i> has been in business for over 50 years! Since 1966, <i>Noch's</i> has been feeding Harvard and the surrounding areas.</h2>
+    </div>
+  </div>
+  <div class="home-other-right">
+    <h2>YES, WE FINALLY DELIVER!</h2>
+    <div class="home-div" style="margin-top: 20px;"></div>
+    <div class="deliv-btn">
+      <a href="/menu" id="order-btn" >ORDER THROUGH US</a>
+    </div>
+    <div class="gh-button-ifrm deliv-btn" data-customer-id="503957" data-restaurant-name="Pinocchio's Pizza &amp; Subs" data-button-type="branded" data-button-color="red" data-button-size="large" data-env="prod" data-url="pinocchios-pizza-&amp;-subs-74-winthrop-st-cambridge" data-tracking-id="55381" data-restaurant-address="74 Winthrop St, Cambridge MA, 02138" data-version="1.0" data-link-type="gh">
+      <iframe id="ifrm" src="https://gh-prod-nitrosites.s3.amazonaws.com/iframeButton/orderNow.html?button-type=branded&amp;button-color=red&amp;button-size=large&amp;customer-id=503957&amp;link-type=gh&amp;restaurant-name=Pinocchio's%20Pizza%20%26%20Subs&amp;link-url=pinocchios-pizza-%26-subs-74-winthrop-st-cambridge&amp;restaurant-address=74%20Winthrop%20St%2C%20Cambridge%20MA%2C%2002138&amp;tracking-id=55381&amp;version=1.0" width="187px" height="44px" style="width:187px !important;height:44px !important;max-width:187px !important;max-height:44px !important;" frameborder="0" allowtransparency="true" target="_blank"></iframe>
+    </div>
+    <div class="deliv-btn">
+      <a href="http://www.doordash.com" target="_blank" id="doordash">
+        <img src="static/images/misc/doordash.jpg">
+        <br>
+        <link href="http://eat24hrs.com/buttons/css/eat24-button-box.css" rel="stylesheet" type="text/css">
+        <style type="text/css">
+          <!--a.eat24-box { font-size: 24px; background-color: #ce0000; color: #fff; box-shadow: .0625em .0625em .1875em rgba(34,34,34,.5), inset 0 0 0 .0625em #a80000; } a.eat24-box:hover { box-shadow: .0625em .0625em .1875em rgba(34,34,34,.5), inset 0 0 0 .125em #a80000; } .eat24-box::after { border-color: transparent transparent transparent #fff; } a.eat24-box::before {background-image: url(http://eat24hrs.com/buttons/button-logos/eat24-brand-ffffff.png); }-->
+        </style>
+      </a>
+    </div>
+    <div class="deliv-btn">
+      <a target="_blank" class="eat24-box" href="http://eat24hrs.com/restaurants/order2/index.php?id=70528" id="eat24" title="Order Online with EAT24">Order Online</a>
+    </div>
+    <div>
+    <div class="home-div" style="margin-top: 20px;"></div>
+    </div>
+      <p>Get your order within 45 minutes!</p>
+      <p>We accept Visa, Mastercard, and Amex.</p>
+      <p>Gift certificates are also available for purchase!</p>
+    </div>
+</div>
+<script src="/static/js/index.js" type="text/javascript"></script>
+
+
+
+
+
+{% endblock %}

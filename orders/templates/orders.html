@@ -1,0 +1,127 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+  Cart
+{% endblock %}
+
+{% block body %}
+<div class="orders-full-div">
+  <div class="cart-div">
+    <div class="cart-title">
+      MY CART
+    </div>
+    <div class="orders-divider">
+    </div>
+    {% if total_items > 0 %}
+    <table class="cart-table">
+      <tr>
+        <th style="width: 160px;"></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      {% for item in cart_items %}
+      <form action="/remove_items" method="post" id="{{ item.id }}-form">
+      {% csrf_token %}
+        <tr>
+          {% if item.type == "Regular Pizza" or item.type == "Sicilian Pizza" %}
+          <td><img src="/static/images/food/pizza.jpg" class="cart-item-img"/></td>
+          {% elif item.type == "Dinner Platter" %}
+          <td><img src="/static/images/food/platter.jpg" class="cart-item-img"/></td>
+          {% else %}
+          <td><img src="/static/images/food/{{ item.type }}.jpg" class="cart-item-img"/></td>
+          {% endif %}
+          {% if item.size == "NA" %}
+          <td><p class="cart-item-name">{{ item.name }}</p></td>
+          {% else %}
+          <td>
+            <p class="cart-item">{{ item.size }} {{ item.type }}:</p>
+            <p class="cart-item-name">{{ item.name }}</p>
+            {% if item.toppings != "None" %}
+            <div class="toppings-hidden">{{ item.toppings }}</div>
+            {% endif %}
+          </td>
+          {% endif %}
+          <td style="font-size: 20px;">${{ item.price }}</td>
+          <td>
+            <input type="hidden" name="item-id" class="item-id" value="{{ item.id }}" />
+            <button class="remove-item" id="{{ item.id }}">REMOVE</button>
+          </td>
+        </tr>
+      </form>
+      {% endfor %}
+      <tr id="total-row" style="height: 60px;">
+        <td style="padding-left: 100px;">Total:</td>
+        <td style="font-size: 40px;" id="total-price">${{ total_price }}</td>
+        <td style="width: 140px;">
+          <form action="/orders" method="post" id="checkout-form">
+          {% csrf_token %}
+            <button id="checkout">CHECK OUT</button>
+          </form>
+        </td>
+        <td style="width: 10px;"></td>
+      </tr>
+    </table>
+    {% else %}
+    <div id="cart-empty">
+      <img src="/static/images/misc/cart.jpg" class="cart-item-img"/>
+      <div><i>Your cart is empty!</i></div>
+    </div>
+    {% endif %}
+  </div>
+  <div class="orders-div">
+    <div class="orders-title">
+      ORDER HISTORY
+    </div>
+    <div class="orders-divider" style="margin-bottom: 50px;">
+    </div>
+    {% if orders_len > 0 %}
+    {% for order in orders_list %}
+      <div class="orders-items-div">
+        <div class="orders-container">
+          <div class="orders-inner">
+            {% if order.status == "PENDING" %}
+            <div class="orders-status">Status: <span class="status pending">{{ order.status }}</span></div>
+            {% elif order.status == "COMPLETE" %}
+            <div class="orders-status">Status: <span class="status complete">{{ order.status }}</span></div>
+            {% else %}
+            <div class="orders-status">Status: <span class="status cooking">{{ order.status }}</span></div>
+            {% endif %}
+            <div class="orders-total">${{ order.total_price }}</div>
+            <div class="orders-time">{{ order.time }}</div>
+          </div>
+          <div class="items-inner">
+            <table>
+              <tr>
+                <th></th>
+                <th></th>
+              </tr>
+              {% for item in items_list %}
+              {% if item.order_number == order.number %}
+              <tr>
+                {% if item.size == "NA"%}
+                <td>{{ item.name }}</td>
+                {% else %}
+                <td>{{ item.size }} {{ item.type }}: {{ item.name }}</td>
+                {% endif %}
+                <td>${{ item.price }}</td>
+              </tr>
+              {% endif %}
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    {% else %}
+    <div id="orders-empty">
+      <div><i>You have no past orders!</i></div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+
+<script src="/static/js/orders.js" type="text/javascript"></script>
+
+{% endblock %}

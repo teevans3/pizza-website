@@ -1,0 +1,290 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+  Menu
+{% endblock %}
+
+{% block body %}
+<div class="section-header">
+  <div class="section-header-left">
+  </div>
+  <!-- to choose between which menu is being displayed -->
+  <div class="section-header-right">
+    <ul>
+      <li id="pizzas-title" class="active-title">
+        <a class="menu-title">PIZZAS</a>
+      </li>
+      <li id="subs-title">
+        <a class="menu-title">SUBS</a>
+      </li>
+      <li id="pastas-salads-title">
+        <a class="menu-title">PASTAS & SALADS</a>
+      </li>
+      <li id="platters-title">
+        <a class="menu-title">PLATTERS</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="menu-div">
+    <div id="pizzas" class="menu-section active">
+      <div class="items-display">
+        <div class="sicilian-table">
+          <h2>SICILIAN PIZZA</h2><div class="info-hidden">Deep-dish, thick-crust pizza (our specialty!)</div>
+          <table style="margin-top: 30px;">
+            <tr class="table-header">
+              <td></td>
+              <td></td>
+              <td><p class="pizza-size">Small</p><div class="size-hidden"><p>16" x 16" • 9 slices • 3 - 5 people</p></div></td>
+              <td><p class="pizza-size">Large</p><div class="size-hidden"><p>28" x 16" • 15 slices • 6 - 9 people</p></div></td>
+            </tr>
+            {% for pizza in pizza_sic %}
+            <tr>
+              <form action="/item_handler" method="post" name="{{ pizza.type }}{{ pizza.name }};">
+              {% csrf_token %}
+                {% if "Special" in pizza.name %}
+                <td><p class="item-name special">{{ pizza.name }}</p><div class="special-hidden">Sausage, Hamburger, Pineapple, Green Peppers, & our <i>Special Sauce</i></div></td>
+                {% else %}
+                <td class="item-name">{{ pizza.name }}</td>
+                {% endif %}
+                {% if "Topping" in pizza.name %}
+                <td class="chosen-col">
+                  <select name="toppings" data-placeholder="Choose topping(s)" class="{{ pizza.name }} pizzatoppings" multiple required>
+                    {% for topping in toppings %}
+                    <option value="{{ topping.topping }}">{{ topping.topping }}</option>
+                    {% endfor %}
+                  </select>
+                </td>
+                {% else %}
+                <td></td>
+                {% endif %}
+                <td>
+                  <input class="size-radio" type="radio" name="size-price" value="Small;{{ pizza.smallprice }}" required/>
+                  <label for="small-{{ pizza.name }}">${{ pizza.smallprice }}</label>
+                </td>
+                <td>
+                  <input class="size-radio" type="radio" name="size-price" value="Large;{{ pizza.largeprice }}" required />
+                  <label for="large-{{ pizza.name }}">${{ pizza.largeprice }}</label>
+                </td>
+                <td>
+                  <input type="hidden" name="name" value="{{ pizza.name }}" />
+                  <input type="hidden" name="type" value="Sicilian" />
+                  <button type="submit" name="item-sic"class="add-item"  id="{{ pizza.type }}{{ pizza.name }};">ADD TO CART</button>
+                </td>
+              </form>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+        <div class="menu-divider">
+        </div>
+        <div class="regular-table">
+          <h2>REGULAR PIZZA</h2><div class="info-hidden">Neopolitan, thin-crust pizza</div>
+          <table style="margin-top: 30px;">
+            <tr class="table-header">
+              <td></td>
+              <td></td>
+              <td><p class="pizza-size">Small</p><div class="size-hidden"><p>12" in diameter • 1 - 2 people</p></div></td>
+              <td><p class="pizza-size">Large</p><div class="size-hidden"><p>16" in diameter • 2 - 4 people</p></div></td>
+            </tr>
+            {% for pizza in pizza_reg %}
+            <tr>
+              <form action="/item_handler" method="post" name="{{ pizza.type }}{{ pizza.name }};">
+              {% csrf_token %}
+                {% if "Special" in pizza.name %}
+                <td><p class="item-name special">{{ pizza.name }}</p><div class="special-hidden">Sausage, Hamburger, Pineapple, Green Peppers, & our <i>Special Sauce</i></div></td>
+                {% else %}
+                <td class="item-name">{{ pizza.name }}</td>
+                {% endif %}
+                {% if "Topping" in pizza.name %}
+                <td>
+                  <select name="toppings" data-placeholder="Choose topping(s)" class="{{ pizza.name }} pizzatoppings" multiple required>
+                    {% for topping in toppings %}
+                    <option value="{{ topping.topping }}">{{ topping.topping }}</option>
+                    {% endfor %}
+                  </select>
+                </td>
+                {% else %}
+                <td></td>
+                {% endif %}
+                <td>
+                  <input class="size-radio" type="radio" name="size-price" value="Small;{{ pizza.smallprice }}" required />
+                  <label for="small-{{ pizza.name }}">${{ pizza.smallprice }}</label>
+                </td>
+                <td>
+                  <input class="size-radio" type="radio" name="size-price" value="Large;{{ pizza.largeprice }}" required />
+                  <label for="large-{{ pizza.name }}">${{ pizza.largeprice }}</label>
+                </td>
+                <td>
+                  <input type="hidden" name="name" value="{{ pizza.name }}" />
+                  <input type="hidden" name="type" value="Regular" />
+                  <button type="submit" name="item-reg" class="add-item" id="{{ pizza.type }}{{ pizza.name }};">ADD TO CART</button>
+                </td>
+              </form>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+      <div class="img-div-right">
+        <img src="/static/images/food/pizza.jpg" id="pizza-img"/>
+      </div>
+    </div>
+    <div id="subs" class="menu-section">
+      <div class="items-display">
+      <div class="sub-table">
+        <table>
+          <tr class="table-header">
+            <th></th>
+            <th></th>
+            <th>Small</th>
+            <th>Large</th>
+          </tr>
+          {% for sub in subs %}
+            <tr>
+              <form action="/item_handler" method="post" class="order-form" name="{{ sub.name }}">
+              {% csrf_token %}
+                <td class="item-name">{{ sub.name }}</td>
+                <td>
+                  <select name="toppings" multiple data-placeholder="Extra topping(s)" class="subtoppings" >
+                    {% for topping in subtoppings %}
+                    <option value="{{ topping.topping }}">{{ topping.topping }} (${{ topping.price }})</option>
+                    {% endfor %}
+                  </select>
+                </td>
+                {% if sub.smallprice <= 0 %}
+                <td></td>
+                {% else %}
+                <td>
+                  <input class="size-radio" type="radio" name="size-price" id="small-{{ sub.name }}" value="Small;{{ sub.smallprice }}" required />
+                  <label for="small-{{ sub.name }}">${{ sub.smallprice }}</label>
+                </td>
+                {% endif %}
+                <td>
+                  <input class="size-radio" type="radio" name="size-price" id="large-{{ sub.name }}" value="Large;{{ sub.largeprice }}" required />
+                  <label for="large-{{ sub.name }}">${{ sub.largeprice }}</label>
+                </td>
+                <td>
+                  <input type="hidden" name="name" value="{{ sub.name }}" />
+                  <input type="hidden" name="type" value="Sub" />
+                  <button type="submit" name="item-sub" class="add-item" id="{{ sub.name }}">ADD TO CART</button>
+                </td>
+              </form>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+      </div>
+      <div class="img-div-right">
+        <img src="/static/images/food/sub.jpg" id="sub-img"/>
+      </div>
+    </div>
+    <div id="pastas-salads" class="menu-section">
+      <div class="items-display">
+        <div class="pasta-table">
+          <h2>PASTA</h2>
+          <table>
+            <tr class="table-header">
+              <th style="width: 200px;"></th>
+              <th></th>
+              <th style="width: 120px;"></th>
+            </tr>
+            {% for pasta in pastas %}
+            <form action="/item_handler" method="post" class="order-form" name="{{ pasta.name }}">
+            {% csrf_token %}
+              <tr>
+                <td class="item-name">{{ pasta.name }}</td>
+                <td>${{ pasta.price }}</td>
+                <td>
+                  <input type="hidden" name="price" value="{{ pasta.price }}" />
+                  <input type="hidden" name="name" value="{{ pasta.name }}" />
+                  <input type="hidden" name="type" value="Pasta" />
+                  <button name="item-pasta" type="submit" class="add-item" id="{{ pasta.name }}">ADD TO CART</button>
+                </td>
+              </tr>
+            </form>
+            {% endfor %}
+          </table>
+        </div>
+        <div class="menu-divider">
+        </div>
+        <div class="salad-table">
+        <h2>SALAD</h2>
+          <table>
+            <tr class="table-header">
+              <th style="width: 200px;"></th>
+              <th></th>
+              <th style="width: 120px;"></th>
+            </tr>
+            {% for salad in salads %}
+            <form action="/item_handler" method="post" class="order-form" name="{{ salad.name }}">
+            {% csrf_token %}
+              <tr>
+                <td class="item-name">{{ salad.name }}</td>
+                <td>${{ salad.price }}</td>
+                <td>
+                  <input type="hidden" name="price" value="{{ salad.price }}" />
+                  <input type="hidden" name="name" value="{{ salad.name }}" />
+                  <input type="hidden" name="type" value="Salad" />
+                  <button name="item-salad" value="{{ salad.name }};{{ salad.price }}" type="submit" class="add-item" id="{{ salad.name }}">ADD TO CART</button>
+                </td>
+              </tr>
+            </form>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+      <div class="img-div-right">
+        <img src="/static/images/food/pasta.jpg" id="pasta-img" />
+        <img src="/static/images/food/salad.jpg" id="salad-img" />
+      </div>
+    </div>
+    <div id="platters" class="menu-section">
+      <div class="platter-table">
+        <table>
+          <tr class="table-header">
+            <th></th>
+            <th>Small</th>
+            <th>Large</th>
+          </tr>
+          {% for platter in platters %}
+          <tr>
+            <form action="/item_handler" method="post" class="order-form" name="{{ platter.name }}-platter">
+            {% csrf_token %}
+              <td class="item-name">{{ platter.name }}</td>
+              <td>
+                <input class="size-radio" type="radio" name="size-price" value="Small;{{ platter.smallprice }}" required />
+                <label for="small-{{ platter.name }}">${{ platter.smallprice }}</label>
+              </td>
+              <td>
+                <input class="size-radio" type="radio" name="size-price" value="Large;{{ platter.largeprice }}" required />
+                <label for="large-{{ platter.name }}">${{ platter.largeprice }}</label>
+              </td>
+              <td>
+                <input type="hidden" name="name" value="{{ platter.name }}" />
+                <input type="hidden" name="type" value="Platter" />
+                <button name="item-platter" type="submit" name="Dinner Platter" class="add-item" id="{{ platter.name }}-platter">ADD TO CART</button>
+              </td>
+            </form>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+      <div class="img-div-right">
+        <img src="/static/images/food/platter.jpg" id="platter-img" />
+      </div>
+    </div>
+</div>
+
+<!-- Menu has different functionalities whether or not user is logged in -->
+{% if user.is_authenticated %}
+  <script src="/static/js/menu_user.js" type="text/javascript"></script>
+{% elif user.is_anonymous %}
+  <script src="/static/js/menu_anon.js" type="text/javascript"></script>
+{% endif %}
+<script src="/static/js/menu.js" type="text/javascript"></script>
+
+
+
+
+{% endblock %}
