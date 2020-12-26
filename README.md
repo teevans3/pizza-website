@@ -1,6 +1,6 @@
 # Project 3
 
-Web Programming with Python and JavaScript
+(Project 3 for CS50 Web Development course - this project is pretty much a recreation/updated site for this site: https://www.pinocchiospizza.net/ to teach us the Django framework and how to use migrations/models structure)
 
 
 I decided to go all-out for this project, since it's the final one, and create a complete website for Pinocchio's Pizza to take orders online. All of the information written on this website is pulled from the original Pinocchio's Pizza website (though I did tweak some of the sentences in order to have a better flow).
