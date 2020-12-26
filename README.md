@@ -3,8 +3,6 @@
 (Project 3 for CS50 Web Development course - this project is pretty much a recreation/updated site for this site: https://www.pinocchiospizza.net/ to teach us the Django framework and how to use migrations/models structure)
 
 
-I decided to go all-out for this project, since it's the final one, and create a complete website for Pinocchio's Pizza to take orders online. All of the information written on this website is pulled from the original Pinocchio's Pizza website (though I did tweak some of the sentences in order to have a better flow).
-
 Layout.html contains the base/layout for the entire website, including a navigation bar (slightly different if a user is logged in or not) and a footer (containing basic information about restaurant as well as links to their social media).
 
 Index.html is the homepage for the website, containing a slider of various pizzas and restaurant images (all random, arbitrarily-chosen images), information about the restaurant, the YouTube videos containing the mentions, and the different options users can use to order from Pinocchio's.
